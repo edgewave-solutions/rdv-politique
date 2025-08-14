@@ -1,5 +1,3 @@
-# LICENSE.md
-
 ## © RVP License
 
 Cette licence encadre l'utilisation, la modification et la distribution du code source de **Rendez-vous Politique (RVP)**.
