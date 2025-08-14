@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendez-vous Politique - RVP</title>
+    <style>
+        /* Thème sombre, métallique, professionnel avec dégradés */
+        :root{
+            --bg-start:#0d1016;   /* anthracite profond */
+            --bg-end:#1b2230;     /* bleu pétrole très sombre */
+            --panel:#131923;      /* panneau sombre */
+            --stroke:#2a3342;     /* bordure acier bleuté */
+            --text:#e6e9ef;       /* texte principal */
+            --muted:#a6b0c3;      /* texte secondaire */
+            --accent:#8bd3ff;     /* liseré néon froid */
+            --accent-2:#b1b6c6;   /* argent brossé */
+        }
+
+        *{box-sizing:border-box}
+        html,body{height:100%}
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background: radial-gradient(1200px 600px at 10% 0%, rgba(139,211,255,.08), transparent 60%),
+                        radial-gradient(800px 400px at 90% 20%, rgba(177,182,198,.06), transparent 60%),
+                        linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+        }
+
+        /* Liseré fin en haut de page, effet acier */
+        body:before{
+            content:"";
+            position:fixed; inset:0 0 auto 0; height:1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity:.6; pointer-events:none;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 3.5rem 1rem 2.25rem;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%),
+                linear-gradient(180deg, #0f131b, #0b0f16);
+            border-bottom:1px solid var(--stroke);
+            box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            margin: 0.2rem 0 .25rem;
+            letter-spacing:.02em;
+            background: linear-gradient(180deg, #e9edf5 0%, #c9ceda 35%, #9aa3b6 60%, #e1e5ee 100%);
+            -webkit-background-clip: text; background-clip:text; color: transparent; /* effet métallique sur le texte */
+            text-shadow: 0 1px 0 rgba(255,255,255,.05), 0 8px 24px rgba(0,0,0,.45);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin: 0.35rem 0 0;
+            color: var(--muted);
+        }
+
+        main {
+            width: 100%;
+            max-width: 960px;
+            padding: 2rem 1.25rem 3rem;
+            text-align: center;
+        }
+
+        .spotify, .countdown {
+            background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            backdrop-filter: saturate(110%) blur(2px);
+            -webkit-backdrop-filter: saturate(110%) blur(2px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 20px 40px rgba(0,0,0,.35);
+        }
+
+        .spotify {
+            margin: 2rem 0;
+            padding: 1.25rem;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            outline: 1px solid rgba(255,255,255,.06);
+            box-shadow: 0 10px 24px rgba(0,0,0,.35);
+        }
+
+        .countdown {
+            margin: 2rem 0 0;
+            padding: 1.25rem 1rem;
+            font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+            color: var(--text);
+        }
+
+        .countdown #timer{
+            display:inline-block;
+            padding:.4rem .75rem;
+            border-radius:12px;
+            border:1px solid var(--stroke);
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 0 0 2px rgba(139,211,255,.08), 0 12px 24px rgba(0,0,0,.35);
+            position:relative;
+        }
+
+        .countdown #timer:after{
+            content:""; position:absolute; inset:-1px; border-radius:12px;
+            background: linear-gradient(90deg, transparent, rgba(139,211,255,.35), transparent);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            padding:1px;
+            pointer-events:none; opacity:.5;
+        }
+
+        h2{
+            margin:0 0 .75rem; font-weight:600; letter-spacing:.02em;
+            color:#e3e7f0;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1.25rem;
+            text-align: center;
+            font-size: .95rem;
+            color: var(--muted);
+            width:100%;
+            border-top:1px solid var(--stroke);
+            background: linear-gradient(180deg, rgba(255,255,255,.00), rgba(255,255,255,.02));
+        }
+
+        /* Petits ajustements responsives */
+        @media (min-width: 768px){
+            .spotify{ padding: 1.25rem 1.5rem; }
+            .countdown{ padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rendez-vous Politique</h1>
+        <p>Actualité politique francophone et internationale</p>
+    </header>
+
+    <main>
+        <div class="spotify">
+            <h2>Écoutez notre podcast sur Spotify</h2>
+            <!-- Remplace le lien par celui de ton podcast -->
+            <iframe src="https://open.spotify.com/embed/show/TON_PODCAST_ID" width="100%" height="232" allow="encrypted-media"></iframe>
+        </div>
+
+        <div class="countdown">
+            Lancement dans : <span id="timer">00j 00h 00m 00s</span>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Rendez-vous Politique - Tous droits réservés
+    </footer>
+
+    <script>
+        // Compte à rebours jusqu'à la date de lancement
+        const launchDate = new Date('2025-12-26T00:00:00'); // Date après Noël
+        const timer = document.getElementById('timer');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = launchDate - now;
+
+            if (diff <= 0) {
+                timer.textContent = "Le podcast est lancé !";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            timer.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
