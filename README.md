@@ -1,7 +1,5 @@
 # Rendez-vous Politique (RVP)
 
-![Logo RVP](https://via.placeholder.com/250x80?text=RVP+Logo)
-
 **Rendez-vous Politique** est un podcast qui propose une analyse et un suivi régulier de l'actualité politique francophone et internationale. Chaque épisode se concentre sur les événements majeurs, les débats et les tendances du monde politique, en fournissant un contenu clair, informatif et accessible.
 
 Le site associé permet de :
