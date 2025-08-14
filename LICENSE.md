@@ -1,5 +1,3 @@
-## © RVP License
-
 Cette licence encadre l'utilisation, la modification et la distribution du code source de **Rendez-vous Politique (RVP)**.
 
 ### Conditions d'utilisation :
@@ -9,7 +7,7 @@ Cette licence encadre l'utilisation, la modification et la distribution du code 
 4. **Aucune garantie** : Le code est fourni "tel quel" sans aucune garantie expresse ou implicite.
 
 ### Exemple d'attribution :
-> Ce projet inclut du code provenant de Rendez-vous Politique (RVP), développé par Edgewave Solutions.
+> **Ce projet inclut du code provenant de Rendez-vous Politique (RVP), développé par Edgewave Solutions.**
 
 ### Droits réservés :
 © 2025 Edgewave Solutions. Tous droits réservés.
