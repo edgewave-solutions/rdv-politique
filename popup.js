@@ -1,74 +1,55 @@
-<script>
-async function loadAds() {
-  const response = await fetch("https://ews-ads.vercel.app/file.json");
-  return await response.json();
-}
-
-function createPopup(ad) {
+// popup.js
+document.addEventListener("DOMContentLoaded", () => {
+  // Créer le conteneur du popup
   const popup = document.createElement("div");
   popup.style.position = "fixed";
-  popup.style.bottom = "20px";
-  popup.style.right = "20px";
-  popup.style.width = "260px";
-  popup.style.padding = "15px";
+  popup.style.top = "50%";
+  popup.style.left = "50%";
+  popup.style.transform = "translate(-50%, -50%)";
   popup.style.background = "#fff";
-  popup.style.border = "1px solid #ccc";
+  popup.style.border = "2px solid #333";
   popup.style.borderRadius = "12px";
-  popup.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+  popup.style.padding = "20px";
+  popup.style.boxShadow = "0 0 15px rgba(0,0,0,0.3)";
   popup.style.zIndex = "9999";
-  popup.style.fontFamily = "Arial, sans-serif";
+  // popup.js
+document.addEventListener("DOMContentLoaded", () => {
+  // Créer un conteneur générique (pas de "ad"/"pub" dans les ids/classes)
+  const box = document.createElement("div");
+  box.style.position = "fixed";
+  box.style.top = "50%";
+  box.style.left = "50%";
+  box.style.transform = "translate(-50%, -50%)";
+  box.style.background = "#fff";
+  box.style.border = "2px solid #333";
+  box.style.borderRadius = "12px";
+  box.style.padding = "20px";
+  box.style.boxShadow = "0 0 15px rgba(0,0,0,0.3)";
+  box.style.zIndex = "99999";
+  box.style.textAlign = "center";
+  box.style.fontFamily = "Arial, sans-serif";
 
-  popup.innerHTML = `
-    <img src="${ad.image}" alt="${ad.title}" style="width:100%;border-radius:8px;">
-    <h3 style="margin:10px 0;font-size:16px;color:#333;">${ad.title}</h3>
-    <p style="font-size:14px;color:#555;">${ad.content}</p>
+  // Contenu
+  box.innerHTML = `
+    <h2 style="margin-bottom:10px; color:#4CAF50;">🔥 Vibes Hosting 🔥</h2>
+    <p style="margin-bottom:15px;">Hébergement rapide, fiable et abordable.</p>
+    <a href="https://vibes-hosting.fr" target="_blank" 
+       style="display:inline-block; background:#4CAF50; color:#fff; padding:10px 20px; 
+              border-radius:8px; text-decoration:none; font-weight:bold;">
+      Découvrir
+    </a>
+    <br><br>
+    <button id="closeBox" 
+            style="margin-top:10px; background:#f44336; color:#fff; border:none; 
+                   padding:8px 15px; border-radius:8px; cursor:pointer;">
+      Fermer
+    </button>
   `;
 
-  // bouton lien
-  const linkBtn = document.createElement("a");
-  linkBtn.href = ad.buttonLink;
-  linkBtn.target = "_blank";
-  linkBtn.textContent = ad.buttonText;
-  linkBtn.style.display = "inline-block";
-  linkBtn.style.marginTop = "8px";
-  linkBtn.style.padding = "6px 12px";
-  linkBtn.style.background = "#007BFF";
-  linkBtn.style.color = "#fff";
-  linkBtn.style.borderRadius = "6px";
-  linkBtn.style.textDecoration = "none";
-  linkBtn.style.fontSize = "13px";
+  document.body.appendChild(box);
 
-  // bouton fermer manuel
-  const closeBtn = document.createElement("button");
-  closeBtn.textContent = "✖";
-  closeBtn.style.position = "absolute";
-  closeBtn.style.top = "8px";
-  closeBtn.style.right = "8px";
-  closeBtn.style.border = "none";
-  closeBtn.style.background = "transparent";
-  closeBtn.style.fontSize = "14px";
-  closeBtn.style.cursor = "pointer";
-  closeBtn.onclick = () => popup.remove();
-
-  popup.appendChild(linkBtn);
-  popup.appendChild(closeBtn);
-  document.body.appendChild(popup);
-}
-
-async function startAds() {
-  const ads = await loadAds();
-
-  function showRandomAd() {
-    const ad = ads[Math.floor(Math.random() * ads.length)];
-    createPopup(ad);
-  }
-
-  // première apparition directe
-  showRandomAd();
-
-  // puis toutes les 3 minutes
-  setInterval(showRandomAd, 180000);
-}
-
-window.onload = startAds;
-</script>
+  // Bouton fermer
+  document.getElementById("closeBox").addEventListener("click", () => {
+    box.remove();
+  });
+});
